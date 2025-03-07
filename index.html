@@ -150,7 +150,9 @@
         <h1>Abraham y Sole</h1>
         <section id="details">
             <h2>Nos Casamos</h2>
-            <p>Nada nos haría más felices que compartir este día tan especial con ustedes. La ceremonia y posterior celebración tendrá lugar el <strong>Viernes 27 de junio a las 12:30 horas</strong> en las Lagunas de Ruidera.</p>
+            <p>Nada nos haría más felices que compartir este día tan especial con ustedes. La ceremonia y posterior celebración tendrá lugar el</p>
+            <p class="event-date">Viernes 27 de junio a las 12:30 horas del 2025</p>
+            <p>en las Lagunas de Ruidera.</p>        
         </section>
         <section id="location">
             <img src="Quijote-wedding.jpg" alt="Quijote Wedding" class="quijote-image">
@@ -415,8 +417,6 @@
                 couple: "Abraham & Sole",
                 phone: "Your Phone Number",
                 name:"Your Name",
-                weMarry: "We're Getting Married",
-                details: "Nothing would make us happier than to share this special day with you. The ceremony and celebration will take place on <strong>Friday, June 27th at 12:30 PM</strong> in the Lagunas de Ruidera.",
                 ceremony: "The Ceremony",
                 celebration: "The Celebration",
                 dressCode: "Dress Code",
@@ -462,7 +462,11 @@
                 viewInfoOnWebsite: "View information on the website",
                 contactTheCouple: "Once decided, contact the couple!",
                 address: "Address:",
-                excitedToCelebrate: "We are excited to celebrate with you!"
+                excitedToCelebrate: "We are excited to celebrate with you!",
+                weMarry: "We're Getting Married",
+                details: "Nothing would make us happier than sharing this special day with you. The ceremony and celebration will take place on",
+                eventDate: "Friday, June 27 at 12:30 PM, 2025",
+                location: "at Lagunas de Ruidera."
             },
             es: {
                 title: "Invitación de Boda",
@@ -472,8 +476,6 @@
                 couple: "Abraham y Sole",
                 phone: "Tu Teléfono",
                 accommodation: "Hospedaje",
-                weMarry: "Nos Casamos",
-                details: "Nada nos haría más felices que compartir este día tan especial con ustedes. La ceremonia y posterior celebración tendrá lugar el <strong>Viernes 27 de junio a las 12:30 horas</strong> en las Lagunas de Ruidera.",
                 ceremony: "La Ceremonia",
                 celebration: "La Celebración",
                 dressCode: "Código de Vestimenta",
@@ -518,8 +520,12 @@
                 viewInfoOnWebsite: "Ver información en la web",
                 contactTheCouple: "¡Una vez decidido, contacta a los novios!",
                 address: "Dirección:",
-                excitedToCelebrate: "Estamos ansiosos por celebrar contigo"
-            }
+                excitedToCelebrate: "Estamos ansiosos por celebrar contigo",
+                weMarry: "Nos Casamos",
+                details: "Nada nos haría más felices que compartir este día tan especial con ustedes. La ceremonia y posterior celebración tendrá lugar el",
+                eventDate: "Viernes 27 de junio a las 12:30 horas del 2025",
+                location: "en las Lagunas de Ruidera."
+                    }
         };
     
         function setLanguage(lang) {
@@ -532,7 +538,18 @@
             document.querySelector(".initial-phrase").innerText = translations[lang].phrase;
             document.querySelector("h1").innerText = translations[lang].couple;
             document.querySelector("#details h2").innerText = translations[lang].weMarry;
-            document.querySelector("#details p").innerHTML = translations[lang].details;
+            
+            // Select all <p> elements inside #details
+            const paragraphs = document.querySelectorAll("#details p");
+            
+            // Update the first <p> (general details)
+            paragraphs[0].innerHTML = translations[lang].details;
+            
+            // Update the second <p> (event date)
+            paragraphs[1].innerHTML = `<span class="event-date">${translations[lang].eventDate}</span>`;
+            
+            // Update the third <p> (location details)
+            paragraphs[2].innerHTML = translations[lang].location;
     
             // Fix for multiple h2 elements under location
             const locationHeadings = document.querySelectorAll("#location h2");
