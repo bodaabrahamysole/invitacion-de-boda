@@ -154,7 +154,8 @@
             <h2>La Celebración</h2>
             <p>Finca El Tobar, Carretera Ermita de San Pedro, km 7. 02611, Ossa de Montiel, Albacete</p>
             <a href="https://www.google.es/maps/place/Finca+El+Tobar/@38.933823,-2.8081464,17z/data=!3m1!4b1!4m6!3m5!1s0xd689564bc604363:0xd028954fd0d90ed4!8m2!3d38.9338189!4d-2.8055715!16s%2Fg%2F11r6rmny_k?entry=ttu&g_ep=EgoyMDI1MDMwMy4wIKXMDSoASAFQAw%3D%3D" target="_blank">Ver en Google Maps</a>
-            <div class="schedule-container">
+                <section id="AlmuerzoFiesta">
+                <div class="schedule-container">
                 <div class="schedule-item">
                     <h3>El Almuerzo</h3>
                     <br>
@@ -167,7 +168,8 @@
                     <p>Horario: 18:00H</p>
                     <img src="celebracion.png" alt="Fiesta">
                 </div>
-            </div>
+                </div>
+            </section>
         </section>
         <br>
         <section id="schedule">
@@ -340,7 +342,9 @@
             <a href="https://www.google.es/maps/place/Finca+El+Tobar/@38.933823,-2.8081464,17z/data=!3m1!4b1!4m6!3m5!1s0xd689564bc604363:0xd028954fd0d90ed4!8m2!3d38.9338189!4d-2.8055715!16s%2Fg%2F11r6rmny_k?entry=ttu&g_ep=EgoyMDI1MDMwMy4wIKXMDSoASAFQAw%3D%3D" target="_blank">Ver en Google Maps</a>
         </section>
         
+        <section id="AdditionalInfo">
         <h2>Información Adicional</h2>     
+        </section>
         <section id="accommodation">
             <h2>Hospedaje</h2>
             <p><strong>Venta del Celemín</strong></p>
@@ -392,7 +396,7 @@
         const translations = {
             en: {
                 title: "Wedding Invitation",
-                phrase: `"Everyone is the architect of their own fortune."`,
+                phrase: "Everyone is the architect of their own fortune.",
                 couple: "Abraham & Sole",
                 phone: "Your Phone Number",
                 weMarry: "We're Getting Married",
@@ -417,10 +421,18 @@
                 sendResponse: "Submit Response",
                 contact: "Contact",
                 contactCouple: "Once decided, contact the couple!",
+                lunch: "Lunch",
+                party: "The Party",
+                infoOfInterest: "Information of Interest",
+                additionalInfo: "Additional Information",
+                afterWeddingParty: "The After-Wedding Party",
+                transport: "Transport",
+                howToGetThere: "How to Get There",
+                placesOfInterest: "Places of Interest",
             },
             es: {
                 title: "Invitación de Boda",
-                phrase: `"Cada uno es artífice de su propia ventura"`,
+                phrase: "Cada uno es artífice de su propia ventura",
                 couple: "Abraham y Sole",
                 phone: "Tu Teléfono",
                 accommodation: "Hospedaje",
@@ -445,6 +457,14 @@
                 sendResponse: "Enviar Respuesta",
                 contact: "Contacto",
                 contactCouple: "¡Una vez decidido, contacta a los novios!",
+                lunch: "El Almuerzo",
+                party: "La Fiesta",
+                infoOfInterest: "Información de Interés",
+                additionalInfo: "Información Adicional",
+                afterWeddingParty: "La Tornaboda",
+                transport: "Transporte",
+                howToGetThere: "CÓMO LLEGAR",
+                placesOfInterest: "SITIOS DE INTERES",
             }
         };
     
@@ -459,32 +479,56 @@
             document.querySelector("h1").innerText = translations[lang].couple;
             document.querySelector("#details h2").innerText = translations[lang].weMarry;
             document.querySelector("#details p").innerHTML = translations[lang].details;
+    
+            // Fix for multiple h2 elements under location
             const locationHeadings = document.querySelectorAll("#location h2");
             if (locationHeadings.length >= 2) {
-                locationHeadings[0].innerText = translations[lang].ceremony;  // First <h2> is for "Ceremony"
-                locationHeadings[1].innerText = translations[lang].celebration; // Second <h2> is for "Celebration"
-            }            
+                locationHeadings[0].innerText = translations[lang].ceremony;
+                locationHeadings[1].innerText = translations[lang].celebration;
+            }
+    
             document.querySelector("#schedule h2").innerText = translations[lang].dressCode;
-            const dressCodeItems = document.querySelectorAll("#schedule .schedule-item h3 p");
-            if (dressCodeItems.length >= 2) {
-                dressCodeItems[0].innerText = translations[lang].outdoor; // "Exteriores"
-                dressCodeItems[1].innerText = translations[lang].comfortableShoes; // "Zapatos cómodos"
-            }            
+    
+    
             document.querySelector("#rsvp h2").innerText = translations[lang].rsvp;
+            document.querySelector('input[name="entry.1919808656"]').placeholder = translations[lang].phone;
+    
             document.querySelector('select[name="entry.1988502904"] option:first-child').innerText = translations[lang].willYouAttend;
             document.querySelector('select[name="entry.1988502904"] option[value="Si"]').innerText = translations[lang].yes;
             document.querySelector('select[name="entry.1988502904"] option[value="No"]').innerText = translations[lang].no;
-            document.querySelector('input[name="entry.1919808656"]').placeholder = translations[lang].phone;
+            
             document.querySelector('select[name="entry.1726548939"] option:first-child').innerText = translations[lang].numGuests;
             document.querySelector('select[name="entry.1901446582"] option:first-child').innerText = translations[lang].travelingBus;
             document.querySelector('select[name="entry.1114872016"] option:first-child').innerText = translations[lang].busSeats;
-            document.querySelector('input[name="entry.673118174"]').placeholder = translations[lang].foodRestrictions;
-            document.querySelector("#extraFields p:nth-of-type(1)").innerText = translations[lang].songsPrompt;
-            document.querySelector('input[name="entry.635824894"]').placeholder = translations[lang].song1;
-            document.querySelector('input[name="entry.1592589008"]').placeholder = translations[lang].song2;
+    
             document.querySelector("#submitBtn").innerText = translations[lang].sendResponse;
             document.querySelector("#contact h2").innerText = translations[lang].contact;
             document.querySelector("#accommodation h2").innerText = translations[lang].accommodation;
+    
+            // ✅ Fix: Properly target "Información Adicional" separately
+            document.querySelector("#AdditionalInfo h2").innerText = translations[lang].additionalInfo;
+            // ✅ Fix: Properly target "La Tornaboda"
+            const tornabodaHeader = document.querySelector("#Tornaboda h2");
+            if (tornabodaHeader) {
+                tornabodaHeader.innerText = translations[lang].afterWeddingParty;
+            }
+
+            const almuerzoFiesta = document.querySelectorAll("#AlmuerzoFiesta h3");
+            if (almuerzoFiesta.length >= 2) {
+                almuerzoFiesta[0].innerText = translations[lang].lunch;
+                almuerzoFiesta[1].innerText = translations[lang].party;
+            }
+    
+            // ✅ Fix: Properly target Transporte section
+            document.querySelector("#Transportation h2").innerText = translations[lang].transport;
+            
+    
+            // ✅ Fix: Correctly target "Cómo Llegar" and "Sitios de Interés"
+            const infoOfInterestSections = document.querySelectorAll("#Information\\ of\\ Interest p strong");
+            if (infoOfInterestSections.length >= 2) {
+                infoOfInterestSections[0].innerText = translations[lang].howToGetThere;
+                infoOfInterestSections[1].innerText = translations[lang].placesOfInterest;
+            }
         }
     
         window.onload = function () {
@@ -492,5 +536,8 @@
             translatePage(savedLang);
         };
     </script>
+    
+    
+    
 </body>
 </html>
