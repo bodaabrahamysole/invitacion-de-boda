@@ -38,8 +38,21 @@
         
         h1 {
             font-weight: 550;
-            font-size: 5rem; /* Increased by 40% */
+            font-size: 5rem; /* Default size for larger screens */
             color: #333;
+            word-break: break-word; /* Ensures long words wrap */
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 3rem; /* Reduce font size on tablets */
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2.5rem; /* Further reduce for smaller screens */
+            }
         }
         
         h2 {
@@ -390,7 +403,9 @@
         </section>
         
     </div>
-    <p class="footer">Estamos ansiosos por celebrar contigo</p>
+    <section id="footer">
+        <p class="footer">Estamos ansiosos por celebrar contigo</p>
+    </section>
 
     <script>
         const translations = {
@@ -399,6 +414,7 @@
                 phrase: "Everyone is the architect of their own fortune.",
                 couple: "Abraham & Sole",
                 phone: "Your Phone Number",
+                name:"Your Name",
                 weMarry: "We're Getting Married",
                 details: "Nothing would make us happier than to share this special day with you. The ceremony and celebration will take place on <strong>Friday, June 27th at 12:30 PM</strong> in the Lagunas de Ruidera.",
                 ceremony: "The Ceremony",
@@ -429,9 +445,29 @@
                 transport: "Transport",
                 howToGetThere: "How to Get There",
                 placesOfInterest: "Places of Interest",
+                foodIntolerances: "Intolerancias alimentarias",
+                helpMakeThisADayOfCelebration: "We need you to help make this day a celebration.",
+                songsYouCantStaySeated: "Tell us which two songs you can't stay seated for.",
+                favoriteDanceSong1: "Favorite dance song #1",
+                favoriteDanceSong2: "Favorite dance song #2",
+                viewOnGoogleMaps: "View on Google Maps",
+                dateTornaboda: "DATE: Saturday, June 28, 2025, 14:00 h",
+                dontForgetSwimwear: "Don't forget your swimwear!",
+                howToGetThere: "HOW TO GET THERE",
+                madridAirport: "MADRID BARAJAS AIRPORT: Approx. 2:30 h. 235 Km.",
+                valenciaAirport: "VALENCIA AIRPORT: Approx. 2:30 h. 261 Km.",
+                alicanteAirport: "ALICANTE AIRPORT: Approx. 2:30 h. 261 Km.",
+                placesOfInterest: "PLACES OF INTEREST",
+                ruideraLagoons: "Ruidera Lagoons",
+                viewInfoOnWebsite: "View information on the website",
+                contactTheCouple: "Once decided, contact the couple!",
+                address: "Address:",
+                excitedToCelebrate: "We are excited to celebrate with you!"
             },
             es: {
                 title: "Invitación de Boda",
+                name:"Tu Nombre",
+                infoOfInterest: "Información de Interés",
                 phrase: "Cada uno es artífice de su propia ventura",
                 couple: "Abraham y Sole",
                 phone: "Tu Teléfono",
@@ -465,6 +501,24 @@
                 transport: "Transporte",
                 howToGetThere: "CÓMO LLEGAR",
                 placesOfInterest: "SITIOS DE INTERES",
+                foodIntolerances: "Intolerancias alimentarias",
+                helpMakeThisADayOfCelebration: "Necesitamos que nos ayudes a hacer de este día una fiesta.",
+                songsYouCantStaySeated: "Indícanos con qué dos canciones no te puedes quedar sentado.",
+                favoriteDanceSong1: "Canción favorita para bailar #1",
+                favoriteDanceSong2: "Canción favorita para bailar #2",
+                viewOnGoogleMaps: "Ver en Google Maps",
+                dateTornaboda: "FECHA: Sábado 28 de junio de 2025 14:00 h",
+                dontForgetSwimwear: "¡No olvides tu ropa de baño!",
+                howToGetThere: "CÓMO LLEGAR",
+                madridAirport: "AEROPUERTO DE MADRID BARAJAS: Aprox. 2:30 h. 235 Km.",
+                valenciaAirport: "AEROPUERTO DE VALENCIA: Aprox. 2:30 h. 261 Km",
+                alicanteAirport: "AEROPUERTO DE ALICANTE: Aprox. 2:30 h. 261 Km",
+                placesOfInterest: "SITIOS DE INTERÉS",
+                ruideraLagoons: "Lagunas de Ruidera",
+                viewInfoOnWebsite: "Ver información en la web",
+                contactTheCouple: "¡Una vez decidido, contacta a los novios!",
+                address: "Dirección:",
+                excitedToCelebrate: "Estamos ansiosos por celebrar contigo"
             }
         };
     
@@ -488,18 +542,37 @@
             }
     
             document.querySelector("#schedule h2").innerText = translations[lang].dressCode;
-    
+
+            const scheduleps = document.querySelectorAll("#schedule h3 p");
+            if (scheduleps.length >= 2) {
+                scheduleps[0].innerText = translations[lang].outdoor;
+                scheduleps[1].innerText = translations[lang].comfortableShoes;
+            }
     
             document.querySelector("#rsvp h2").innerText = translations[lang].rsvp;
             document.querySelector('input[name="entry.1919808656"]').placeholder = translations[lang].phone;
+            document.querySelector('input[name="entry.812134174"]').placeholder = translations[lang].name;
+
     
             document.querySelector('select[name="entry.1988502904"] option:first-child').innerText = translations[lang].willYouAttend;
             document.querySelector('select[name="entry.1988502904"] option[value="Si"]').innerText = translations[lang].yes;
             document.querySelector('select[name="entry.1988502904"] option[value="No"]').innerText = translations[lang].no;
+            document.querySelector('input[name="entry.673118174"]').placeholder = translations[lang].foodIntolerances;
             
             document.querySelector('select[name="entry.1726548939"] option:first-child').innerText = translations[lang].numGuests;
             document.querySelector('select[name="entry.1901446582"] option:first-child').innerText = translations[lang].travelingBus;
             document.querySelector('select[name="entry.1114872016"] option:first-child').innerText = translations[lang].busSeats;
+
+            const paragraphs = document.querySelectorAll("#extraFields p");
+            if (paragraphs.length >= 2) {
+                paragraphs[0].innerText = translations[lang].helpMakeThisADayOfCelebration;
+                paragraphs[1].innerText = translations[lang].songsYouCantStaySeated;
+            }
+
+            document.querySelector('input[name="entry.635824894"]').placeholder = translations[lang].favoriteDanceSong1;
+            document.querySelector('input[name="entry.1592589008"]').placeholder = translations[lang].favoriteDanceSong2;
+
+
     
             document.querySelector("#submitBtn").innerText = translations[lang].sendResponse;
             document.querySelector("#contact h2").innerText = translations[lang].contact;
@@ -513,24 +586,76 @@
                 tornabodaHeader.innerText = translations[lang].afterWeddingParty;
             }
 
+            const mapLinks = document.querySelectorAll('a[href*="google.es/maps"], a[href*="google.com/maps"]');
+            mapLinks.forEach(link => {
+                link.innerText = translations[lang].viewOnGoogleMaps;
+            });
+
+            const tornabodaParagraphs = document.querySelectorAll("#Tornaboda p");
+
+            if (tornabodaParagraphs.length >= 2) {
+                tornabodaParagraphs[1].innerText = translations[lang].dateTornaboda;
+                tornabodaParagraphs[2].innerText = translations[lang].dontForgetSwimwear;
+            }
+
+
             const almuerzoFiesta = document.querySelectorAll("#AlmuerzoFiesta h3");
             if (almuerzoFiesta.length >= 2) {
                 almuerzoFiesta[0].innerText = translations[lang].lunch;
                 almuerzoFiesta[1].innerText = translations[lang].party;
             }
-    
+
             // ✅ Fix: Properly target Transporte section
             document.querySelector("#Transportation h2").innerText = translations[lang].transport;
-            
-    
-            // ✅ Fix: Correctly target "Cómo Llegar" and "Sitios de Interés"
-            const infoOfInterestSections = document.querySelectorAll("#Information\\ of\\ Interest p strong");
-            if (infoOfInterestSections.length >= 2) {
-                infoOfInterestSections[0].innerText = translations[lang].howToGetThere;
-                infoOfInterestSections[1].innerText = translations[lang].placesOfInterest;
+
+            const contactLink = document.querySelector('#accommodation a[href="#contact"]');
+            if (contactLink) {
+                contactLink.innerText = translations[lang].contactTheCouple;
             }
+
+            const footerText = document.querySelector("#footer p.footer");
+            if (footerText) {
+                footerText.innerText = translations[lang].excitedToCelebrate;
+            }
+
+
+            const infoSection = document.querySelector("#Information\\ of\\ Interest");
+
+            if (infoSection) {
+                const heading = infoSection.querySelector("h2");
+                const paragraphs = infoSection.querySelectorAll("p");
+                const links = infoSection.querySelectorAll("a");
+
+                if (heading) {
+                    heading.innerText = translations[lang].infoOfInterest;
+                }
+
+                if (paragraphs.length >= 6) {
+                    paragraphs[0].innerText = translations[lang].howToGetThere;
+                    paragraphs[1].innerText = translations[lang].madridAirport;
+                    paragraphs[2].innerText = translations[lang].valenciaAirport;
+                    paragraphs[3].innerText = translations[lang].alicanteAirport;
+                    paragraphs[4].innerText = translations[lang].placesOfInterest;
+                    paragraphs[5].innerText = translations[lang].ruideraLagoons;
+                }
+
+                if (links.length >= 2) {
+                    links[0].innerText = translations[lang].viewInfoOnWebsite;
+                    links[1].innerText = translations[lang].viewInfoOnWebsite;
+                }
+            }
+
+
+            const addressTLabels = document.querySelectorAll("#accommodation p, #Transportation p");
+
+            addressLabels.forEach((p) => {
+                if (p.innerText.startsWith("Dirección:")) {
+                    p.innerText = p.innerText.replace("Dirección:", translations[lang].address);
+                }
+            });
+
         }
-    
+        
         window.onload = function () {
             const savedLang = localStorage.getItem("language") || "es";
             translatePage(savedLang);
