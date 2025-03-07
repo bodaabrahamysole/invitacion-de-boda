@@ -563,16 +563,13 @@
             document.querySelector("#details h2").innerText = translations[lang].weMarry;
             
             // Select all <p> elements inside #details
-            const paragraphs = document.querySelectorAll("#details p");
-            
-            // Update the first <p> (general details)
-            paragraphs[0].innerHTML = translations[lang].details;
-            
-            // Update the second <p> (event date)
-            paragraphs[1].innerHTML = `<span class="event-date">${translations[lang].eventDate}</span>`;
-            
-            // Update the third <p> (location details)
-            paragraphs[2].innerHTML = translations[lang].location;
+            const detailsParagraphs = document.querySelectorAll("#details p");
+
+            if (detailsParagraphs.length >= 3) {
+                detailsParagraphs[0].innerHTML = translations[lang].details;
+                detailsParagraphs[1].innerHTML = `<span class="event-date">${translations[lang].eventDate}</span>`;
+                detailsParagraphs[2].innerHTML = translations[lang].location;
+            }
     
             document.querySelector("#rsvp h2").innerText = translations[lang].rsvp;
             document.querySelector('input[name="entry.1919808656"]').placeholder = translations[lang].phone;
