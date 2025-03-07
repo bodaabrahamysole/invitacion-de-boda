@@ -452,7 +452,7 @@
                 transport: "Transport",
                 howToGetThere: "How to Get There",
                 placesOfInterest: "Places of Interest",
-                foodIntolerances: "Intolerancias alimentarias",
+                foodIntolerances: "Food Intolerance",
                 helpMakeThisADayOfCelebration: "We need you to help make this day a celebration.",
                 songsYouCantStaySeated: "Tell us which two songs you can't stay seated for.",
                 favoriteDanceSong1: "Favorite dance song #1",
@@ -669,8 +669,7 @@
 
 
             const addressTLabels = document.querySelectorAll("#accommodation p, #Transportation p");
-
-            addressLabels.forEach((p) => {
+            addressTLabels.forEach((p) => {
                 if (p.innerText.startsWith("Dirección:")) {
                     p.innerText = p.innerText.replace("Dirección:", translations[lang].address);
                 }
